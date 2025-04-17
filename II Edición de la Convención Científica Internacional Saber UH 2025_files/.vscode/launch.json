@@ -1,0 +1,14 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open II Edición de la Convención Científica Internacional Saber UH 2025.html",
+            "file": "c:\\Users\\alekh\\Downloads\\convencion.uh.cu\\II Edición de la Convención Científica Internacional Saber UH 2025.html"
+        }
+    ]
+}
