@@ -1,28 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
   const API_URL = "https://uh.cu/wp-json/wp/v2/posts";
+  const newsSection = document.getElementById("news-banner-6n"); // ID de la sección de noticias
   const newsContainer = document.getElementById("news-container");
 
- async function getNews() {
-   try {
-     const response = await fetch(API_URL);
-     const data = await response.json();
+  async function getNews() {
+    try {
+      const response = await fetch(API_URL);
+      const data = await response.json();
 
-     // Filtrar las noticias que tengan el tag "SaberUH" y limitar a 3
-     const saberUHNews = data
-       .filter((newsItem) => {
-         if (newsItem.tags && Array.isArray(newsItem.tags)) {
-           return newsItem.tags.includes("SaberUH");
-         }
-         return false;
-       })
-       .slice(0, 3); // Limitar a 3 noticias
+      // Filtrar las noticias que tengan el tag "SaberUH" y limitar a 3
+      const saberUHNews = data
+        .filter((newsItem) => {
+          if (newsItem.tags && Array.isArray(newsItem.tags)) {
+            return newsItem.tags.includes("SaberUH");
+          }
+          return false;
+        })
+        .slice(0, 3); // Limitar a 3 noticias
 
-     return saberUHNews;
-   } catch (error) {
-     console.error("Error al obtener los datos de la API:", error);
-     return [];
-   }
- }
+      return saberUHNews;
+    } catch (error) {
+      console.error("Error al obtener los datos de la API:", error);
+      return [];
+    }
+  }
 
   async function getImage(featuredMediaId) {
     try {
@@ -62,6 +63,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function displayNews() {
     const newsData = await getNews();
+
+    // Si no hay noticias, ocultar la sección
+    if (newsData.length === 0) {
+      newsSection.style.display = "none";
+      return; // Salir de la función
+    }
 
     for (const newsItem of newsData) {
       let imageUrl = "";
