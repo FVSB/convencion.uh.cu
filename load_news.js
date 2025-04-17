@@ -12,9 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const saberUHNews = data
         .filter((newsItem) => {
           if (newsItem.tags && Array.isArray(newsItem.tags)) {
-            return newsItem.tags.includes("SaberUH");
+           // TODO: Eduardo return newsItem.tags.includes("SaberUH"); Descomenta esto para que filtre solo lo que tiene ese tag
+           return true // TODO: Eduardo Elimina esto solo esta hardcodeado para que veas que devuelve 3 noticias
           }
-          return false;
+           return true// TODO: Eduardo borra esto y dejalo en return false 
+          // return false;  // TODO: Eduardo Descomenta esto
         })
         .slice(0, 3); // Limitar a 3 noticias
 
