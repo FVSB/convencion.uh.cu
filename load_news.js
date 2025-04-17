@@ -2,16 +2,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const API_URL = "https://uh.cu/wp-json/wp/v2/posts";
   const newsContainer = document.getElementById("news-container");
 
-  async function getNews() {
-    try {
-      const response = await fetch(API_URL);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error al obtener los datos de la API:", error);
-      return [];
-    }
-  }
+ async function getNews() {
+   try {
+     const response = await fetch(API_URL);
+     const data = await response.json();
+
+     // Filtrar las noticias que tengan el tag "SaberUH" y limitar a 3
+     const saberUHNews = data
+       .filter((newsItem) => {
+         if (newsItem.tags && Array.isArray(newsItem.tags)) {
+           return newsItem.tags.includes("SaberUH");
+         }
+         return false;
+       })
+       .slice(0, 3); // Limitar a 3 noticias
+
+     return saberUHNews;
+   } catch (error) {
+     console.error("Error al obtener los datos de la API:", error);
+     return [];
+   }
+ }
 
   async function getImage(featuredMediaId) {
     try {
