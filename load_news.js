@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const mediaResponse = await fetch(featuredMediaId);
       const mediaData = await mediaResponse.json();
-      return mediaData.guid.rendered;
+      return mediaData.media_details.sizes.thumbnail.source_url;
     } catch (error) {
       console.error("Error al obtener la imagen:", error);
       return "";
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     card.innerHTML = `
             <div class="news-card" style="background: rgba(255,255,255,0.95); border-radius: 8px; padding: 1rem; height: 100%; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                <div class="news-image-container" style="height: 120px; overflow: hidden; border-radius: 6px; margin-bottom: 0.8rem; position: relative;">
+                <div class="news-image-container" style="height: 150px; overflow: hidden; border-radius: 6px; margin-bottom: 0.8rem; position: relative;">
                     <img src="${imageUrl}" alt="${newsItem.title.rendered}" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <h3 class="news-title" style="color: #063d73 !important; font-weight: 600; margin-bottom: 0.5rem;">
