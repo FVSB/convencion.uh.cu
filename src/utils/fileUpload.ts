@@ -10,8 +10,8 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (_req: any, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
-  const allowed = /\.(png|jpe?g|svg)$/i.test(file.originalname);
-  cb(allowed ? null : new Error('Solo PNG/JPG/SVG'), allowed);
+  const ok = /\.(png|jpe?g|svg)$/i.test(file.originalname);
+  cb(ok ? null : new Error('Solo PNG/JPG/SVG'), ok);
 };
 
 export default multer({ storage, fileFilter });

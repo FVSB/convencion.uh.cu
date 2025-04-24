@@ -1,7 +1,6 @@
 import { Model, DataTypes, Optional } from 'sequelize';
-import sequelize from '../db';
+import { sequelize } from '../db';
 
-// Atributos del modelo
 interface SponsorAttributes {
   id: number;
   name: string;
@@ -9,7 +8,6 @@ interface SponsorAttributes {
   createdAt: Date;
 }
 
-// Para creación: id y createdAt se generan automáticamente
 interface SponsorCreationAttributes extends Optional<SponsorAttributes, 'id' | 'createdAt'> {}
 
 class Sponsor extends Model<SponsorAttributes, SponsorCreationAttributes>
@@ -28,11 +26,11 @@ Sponsor.init(
       primaryKey: true
     },
     name: {
-      type: new DataTypes.STRING(128),
+      type: DataTypes.STRING(128),
       allowNull: false
     },
     image: {
-      type: new DataTypes.STRING(255),
+      type: DataTypes.STRING(255),
       allowNull: false
     },
     createdAt: {
